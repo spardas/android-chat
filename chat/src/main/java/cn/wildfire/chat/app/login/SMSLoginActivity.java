@@ -1,8 +1,6 @@
 package cn.wildfire.chat.app.login;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Handler;
 import android.text.Editable;
 import android.widget.Button;
@@ -18,7 +16,8 @@ import butterknife.Bind;
 import butterknife.OnClick;
 import butterknife.OnTextChanged;
 import cn.wildfire.chat.app.Config;
-import cn.wildfire.chat.app.login.model.LoginResult;
+import cn.wildfire.chat.app.login.model.LoginData;
+import cn.wildfire.chat.app.api.model.LoginResult;
 import cn.wildfire.chat.app.main.MainActivity;
 import cn.wildfire.chat.kit.ChatManagerHolder;
 import cn.wildfire.chat.kit.WfcBaseActivity;
@@ -98,11 +97,7 @@ public class SMSLoginActivity extends WfcBaseActivity {
                 }
                 dialog.dismiss();
                 ChatManagerHolder.gChatManager.connect(loginResult.getUserId(), loginResult.getToken());
-                SharedPreferences sp = getSharedPreferences("config", Context.MODE_PRIVATE);
-                sp.edit()
-                        .putString("id", loginResult.getUserId())
-                        .putString("token", loginResult.getToken())
-                        .apply();
+                LoginData.instance.save(getApplicationContext(), loginResult);
                 Intent intent = new Intent(SMSLoginActivity.this, MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);

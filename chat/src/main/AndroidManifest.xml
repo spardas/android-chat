@@ -177,6 +177,18 @@
             android:name="cn.wildfire.chat.app.login.SMSLoginActivity"
             android:label="登录" />
         <activity
+            android:name="cn.wildfire.chat.app.login.AuthLoginActivity"
+            android:label="授权登录" />
+        <activity
+            android:name="cn.wildfire.chat.app.login.PwdLoginActivity"
+            android:label="密码登录" />
+
+        <activity
+            android:name="cn.wildfire.chat.wxapi.WXEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop" />
+
+        <activity
             android:name="cn.wildfire.chat.kit.channel.ChannelListActivity"
             android:label="频道列表" />
 

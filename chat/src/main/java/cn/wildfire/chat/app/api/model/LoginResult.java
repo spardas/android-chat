@@ -1,4 +1,4 @@
-package cn.wildfire.chat.app.login.model;
+package cn.wildfire.chat.app.api.model;
 
 
 /**
@@ -7,6 +7,7 @@ package cn.wildfire.chat.app.login.model;
 public class LoginResult {
     private String userId;
     private String token;
+    private String imToken;
 
     public String getUserId() {
         return userId;
@@ -22,5 +23,13 @@ public class LoginResult {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public String getImToken() {
+        return imToken;
+    }
+
+    public void setImToken(String imToken) {
+        this.imToken = imToken;
     }
 }

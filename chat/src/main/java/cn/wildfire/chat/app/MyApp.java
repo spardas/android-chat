@@ -14,6 +14,7 @@ import cn.wildfirechat.chat.BuildConfig;
 
 
 public class MyApp extends BaseApp {
+    public static Context sContext;
 
     private WfcUIKit wfcUIKit;
 
@@ -30,6 +31,7 @@ public class MyApp extends BaseApp {
             MessageViewHolderManager.getInstance().registerMessageViewHolder(LocationMessageContentViewHolder.class);
             setupWFCDirs();
         }
+        sContext = this;
     }
 
     private void setupWFCDirs() {

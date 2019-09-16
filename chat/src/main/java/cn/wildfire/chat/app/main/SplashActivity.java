@@ -20,6 +20,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import butterknife.ButterKnife;
+import cn.wildfire.chat.app.login.AuthLoginActivity;
+import cn.wildfire.chat.app.login.PwdLoginActivity;
 import cn.wildfire.chat.app.login.SMSLoginActivity;
 import cn.wildfirechat.chat.R;
 
@@ -118,7 +120,7 @@ public class SplashActivity extends AppCompatActivity {
 
     private void showLogin() {
         Intent intent;
-        intent = new Intent(this, SMSLoginActivity.class);
+        intent = new Intent(this, PwdLoginActivity.class);
         startActivity(intent);
         finish();
     }
