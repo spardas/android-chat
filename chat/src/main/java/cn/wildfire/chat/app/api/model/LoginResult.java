@@ -8,6 +8,7 @@ public class LoginResult {
     private String userId;
     private String token;
     private String imToken;
+    private String imUserId;
 
     public String getUserId() {
         return userId;
@@ -31,5 +32,13 @@ public class LoginResult {
 
     public void setImToken(String imToken) {
         this.imToken = imToken;
+    }
+
+    public String getImUserId() {
+        return imUserId;
+    }
+
+    public void setImUserId(String imUserId) {
+        this.imUserId = imUserId;
     }
 }

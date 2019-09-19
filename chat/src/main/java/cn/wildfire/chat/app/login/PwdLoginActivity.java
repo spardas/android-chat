@@ -15,6 +15,7 @@ import cn.wildfire.chat.app.api.model.LoginBody;
 import cn.wildfire.chat.app.api.model.LoginResult;
 import cn.wildfire.chat.app.login.model.LoginData;
 import cn.wildfire.chat.app.main.MainActivity;
+import cn.wildfire.chat.kit.ChatManagerHolder;
 import cn.wildfire.chat.kit.WfcBaseActivity;
 import cn.wildfirechat.chat.R;
 import retrofit2.Call;
@@ -55,15 +56,17 @@ public class PwdLoginActivity extends WfcBaseActivity {
         call.enqueue(new Callback<CommonResult<LoginResult>>() {
             @Override
             public void onResponse(Call<CommonResult<LoginResult>> call, Response<CommonResult<LoginResult>> response) {
-                if (!PwdLoginActivity.this.isFinishing()) {
+                if (PwdLoginActivity.this.isFinishing()) {
                     return;
                 }
                 if (dialog.isShowing()) {
                     dialog.dismiss();
                 }
                 if (response.body() != null) {
-                    if (response.body().getData() != null) {
-                        LoginData.instance.save(PwdLoginActivity.this, response.body().getData());
+                    LoginResult loginResult = response.body().getData();
+                    if (loginResult != null) {
+                        ChatManagerHolder.gChatManager.connect(loginResult.getUserId(), loginResult.getImToken());
+                        LoginData.instance.save(PwdLoginActivity.this, loginResult);
                         startActivity(new Intent(PwdLoginActivity.this, MainActivity.class));
                         finish();
                     } else if (response.body().getCode() == 2001) {
