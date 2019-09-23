@@ -1,6 +1,7 @@
 package cn.wildfire.chat.app.login;
 
 import android.content.Intent;
+import android.text.TextUtils;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -34,6 +35,19 @@ public class PwdLoginActivity extends WfcBaseActivity {
         return R.layout.activity_pwd_login;
     }
 
+    @Override
+    protected void afterViews() {
+        super.afterViews();
+        String phone = LoginData.instance.getPhone(this);
+        if (!TextUtils.isEmpty(phone)) {
+            phoneView.setText(phone);
+        }
+        String pwd = LoginData.instance.getPwd(this);
+        if (!TextUtils.isEmpty(pwd)) {
+            pwdView.setText(pwd);
+        }
+    }
+
     @OnClick(R.id.btn_login)
     void onLoginClick() {
         String phone = phoneView.getText().toString();
@@ -65,8 +79,9 @@ public class PwdLoginActivity extends WfcBaseActivity {
                 if (response.body() != null) {
                     LoginResult loginResult = response.body().getData();
                     if (loginResult != null) {
-                        ChatManagerHolder.gChatManager.connect(loginResult.getUserId(), loginResult.getImToken());
+                        ChatManagerHolder.gChatManager.connect(loginResult.getImUserId(), loginResult.getImToken());
                         LoginData.instance.save(PwdLoginActivity.this, loginResult);
+                        LoginData.instance.savePwd(PwdLoginActivity.this, phoneView.getText().toString(), pwdView.getText().toString());
                         startActivity(new Intent(PwdLoginActivity.this, MainActivity.class));
                         finish();
                     } else if (response.body().getCode() == 2001) {
