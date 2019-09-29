@@ -3,31 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
     <include layout="@layout/toolbar" />
-    <RelativeLayout
-        android:id="@+id/top_layout"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="#fff">
-
-        <ImageView
-            android:id="@+id/back_icon"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_centerVertical="true"
-            android:layout_gravity="center"
-            android:layout_marginStart="13dp"
-            android:layout_marginLeft="13dp"
-            android:src="@mipmap/ic_back" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="登录"
-            android:textColor="#282828"
-            android:textSize="16sp" />
-    </RelativeLayout>
 
     <cn.wildfire.chat.kit.widget.ClearEditText
         android:id="@+id/input_phone"
@@ -59,7 +36,6 @@
         android:drawableLeft="@mipmap/ic_lock_yellow"
         android:hint="请输入密码"
         android:inputType="textPassword"
-        android:maxLength="11"
         android:paddingStart="12dp"
         android:paddingLeft="12dp"
         android:paddingEnd="10dp"

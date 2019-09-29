@@ -52,7 +52,7 @@ android {
         debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            buildConfigField("String", "API_HOST", "\"http://30.52.96.103\"")//183.134.65.78
+            buildConfigField("String", "API_HOST", "\"http://183.134.65.78\"")//183.134.65.78
             buildConfigField("boolean", "openSec", "true")
             buildConfigField("String", "appKey", "\"27h9GP6Y49IfR76Ba295A001S6wdNDnM4gOu7608r19i4272NlVF52ahN6GEwW77\"")
             signingConfig signingConfigs.duck

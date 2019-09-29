@@ -46,6 +46,7 @@ public class PwdLoginActivity extends WfcBaseActivity {
                 .progress(true, 100)
                 .cancelable(false)
                 .build();
+        dialog.show();
         LoginBody body = new LoginBody();
         LoginHelper.buildBaseLoginBody(body, "pwdLogin");
         body.setLoginId(phone);
@@ -55,7 +56,7 @@ public class PwdLoginActivity extends WfcBaseActivity {
         call.enqueue(new Callback<CommonResult<LoginResult>>() {
             @Override
             public void onResponse(Call<CommonResult<LoginResult>> call, Response<CommonResult<LoginResult>> response) {
-                if (!PwdLoginActivity.this.isFinishing()) {
+                if (PwdLoginActivity.this.isFinishing()) {
                     return;
                 }
                 if (dialog.isShowing()) {
